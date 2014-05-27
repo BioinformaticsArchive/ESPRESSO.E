@@ -1,0 +1,18 @@
+Package: ESPRESSO.E
+Type: Package
+Title: Power Analysis and Sample Size Calculation for a model with a main
+    effect environmental exposure
+Version: 1.0
+Date: 2013-04-01
+Author: Amadou Gaye
+Maintainer: Amadou Gaye <amadou.gaye@bristol.ac.uk>
+Description: The package allows for the Estimation of Sample-size and Power by
+    Exploring Simulated Study Outcomes for a main effect model where the single
+    covariate is an environmental or life style exposure. It supports
+    simulation-based power calculation for stand-alone case-control studies and
+    for case-control analyses nested in cohort studies, that take account of
+    realistic assessment error.
+Depends:
+    MASS
+License: GPL-2
+LazyLoad: yes
