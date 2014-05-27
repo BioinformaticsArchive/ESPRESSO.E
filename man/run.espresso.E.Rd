@@ -41,7 +41,7 @@ functions called to carry the various tasks are internal.
 {
 
 # load the table that hold the input parameters; each of the table
-hold parameters for 4 scenarios:
+# hold parameters for 4 scenarios:
 # scenario 1: a binary outcome determined by a binary exposure
 # scenario 2: a binary outcome determined by a continuous exposure
 # scenario 3: a quantitative outcome determined by a binary exposure

@@ -24,7 +24,6 @@ sim.env.data <- function(num.obs=10000, env.model=0, env.prev=0.1, env.mean=0,en
   # CREATE THE FIRST ENVIRONMENTAL COVARIATE 
   if(e.mod==0){   # BINARY DISTRIBUTION
      env.U <- rbinom(numobs, 1, e.prev)
-     envA <<- env.U
      e.mean <- e.prev
      env.U <- env.U-e.mean
   }
