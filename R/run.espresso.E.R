@@ -177,8 +177,8 @@ run.espresso.E <- function(simulation.params=NULL, pheno.params=NULL, env.params
     
     # SUMMARISE PRIMARY PARAMETER ESTIMATES
     # COEFFICIENTS ON LOG-ODDS SCALE
-    m.beta <- mean(beta.values, na.rm=T)
-    m.se <- sqrt(mean(se.values^2, na.rm=T))
+    m.beta <- round(mean(beta.values, na.rm=T),3)
+    m.se <- round(sqrt(mean(se.values^2, na.rm=T)),3)
     m.model.z <- m.beta/m.se
     
     

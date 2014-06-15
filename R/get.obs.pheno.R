@@ -36,7 +36,19 @@ get.obs.pheno <- function (phenotype=NULL, pheno.model=0, pheno.sd=1, pheno.erro
   # GET THE OBSERVED OUTCOME DATA
   if(pheno.model==0){ # IF THE OUTCOME IS BINARY
     
-    observed.phenotype <- misclassify(binary.vector=phenotype, error.1.0=pheno.error[1], error.0.1=pheno.error[2])
+    pheno.original<-phenotype
+    disease.missed<-rbinom(length(phenotype),1,pheno.error[1])
+    non.disease.missed<-rbinom(length(phenotype),1,pheno.error[2])
+    pheno.U<-
+      ((pheno.original==0) * (disease.missed==0) * (non.disease.missed==0))*pheno.original+
+      ((pheno.original==1) * (disease.missed==0) * (non.disease.missed==0))*pheno.original+
+      ((pheno.original==0) * (disease.missed==0) * (non.disease.missed==1))*(1-pheno.original)+
+      ((pheno.original==1) * (disease.missed==0) * (non.disease.missed==1))*pheno.original+
+      ((pheno.original==0) * (disease.missed==1) * (non.disease.missed==0))*pheno.original+
+      ((pheno.original==1) * (disease.missed==1) * (non.disease.missed==0))*(1-pheno.original)+
+      ((pheno.original==0) * (disease.missed==1) * (non.disease.missed==1))*(1-pheno.original)+
+      ((pheno.original==1) * (disease.missed==1) * (non.disease.missed==1))*(1-pheno.original)
+    observed.phenotype <- pheno.U
     
   }else{ # IF THE OUTCOME IS CONTINUOUS NORMAL
     # USE THE RELIABITLITY OF PHENOTYPE ASSESSMENT TO COMPUTE THE VARIANCE OF MEASURED PHENOTYPES.
