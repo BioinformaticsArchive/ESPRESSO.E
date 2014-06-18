@@ -13,19 +13,11 @@
 #' @keywords internal
 #' @author Gaye A.
 #'
-sim.subject.data <- function (num.obs=10000, baseline.OR=12.36){
-
-  numobs <- num.obs
-  baseline.odds <- baseline.OR
-  
-  # CONVERT BASELINE ODDS RATIO FROM 5th TO 95th PERCENTILES INTO THE
-  # CORRESPONDING VARIANCE FOR A NORMALLY DISTRIBUTED RANDOM EFFECT 
-  baseline.variance <- (log(baseline.odds)/(2*qnorm(0.95)))^2
-  
-  # CREATE NORMALLY DISTRIBUTED RANDOM EFFECT VECTOR
-  # WITH APPROPRIATE VARIANCE ON SCALE OF LOG-ODDS
-  subject.effect <- rnorm(numobs,0,sqrt(baseline.variance))
-  
-  # RETURN A VECTOR 
-  output <- subject.effect
+sim.subject.data <- function (num.obs = 10000, baseline.OR = 12.36) 
+{
+    numobs <- num.obs
+    baseline.odds <- baseline.OR
+    baseline.variance <- (log(baseline.odds)/(2 * qnorm(0.95)))^2
+    subject.effect <- rnorm(numobs, 0, sqrt(baseline.variance))
+    output <- subject.effect
 }

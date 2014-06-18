@@ -10,40 +10,30 @@
 #' @keywords internal
 #' @author Gaye A.
 #'
-sim.pheno.bin.E <- function(num.obs=10000, disease.prev=0.1, environment=NULL, subject.effect.data=NULL, env.OR=1.5){
-  
-  # IF GENOTYPE AND SUBJECT EFFECT DATA ARE NOT SUPPLIED STOP AND ISSUE AN ALERT
-  if(is.null(environment)){
-    cat("\n\n ALERT!\n")
-    cat(" No environment data found.\n")
-    cat(" Check the argument 'environment'\n")
-    stop(" End of process!\n\n", call.=FALSE)
-  }
-  if(is.null(subject.effect.data)){
-    cat("\n\n ALERT!\n")
-    cat(" No baseline effect data found.\n")
-    cat(" Check the argument 'subject.effect.data'\n")
-    stop(" End of process!\n\n", call.=FALSE)
-  }
-
-  numobs <- num.obs
-  pheno.prev <- disease.prev
-  env.data <- environment
-  s.efkt.data <- subject.effect.data
-  e.OR <- env.OR
- 
-  # GET THE ALPHA AND BETA VALUES
-  alpha <- log(pheno.prev/(1-pheno.prev))
-  beta <- log(e.OR)
-  
-  # GENERATE THE LINEAR PREDICTOR
-  lp <- alpha + beta*env.data + s.efkt.data
-
-  # GET 'mu' THE PROBABILITY OF DISEASE THROUGH LOGISTIC TRANSFORMATION
-  mu <- exp(lp)/(1 + exp(lp))
-
-  # GENERATE THE PHENOTYPE DATA AND RETURN IT AS A DATAFRAME
-  phenotype <- rbinom(numobs,1,mu)
-  return(phenotype)
+sim.pheno.bin.E <- function (num.obs = 10000, disease.prev = 0.1, environment = NULL, 
+    subject.effect.data = NULL, env.OR = 1.5) 
+{
+    if (is.null(environment)) {
+        cat("\n\n ALERT!\n")
+        cat(" No environment data found.\n")
+        cat(" Check the argument 'environment'\n")
+        stop(" End of process!\n\n", call. = FALSE)
+    }
+    if (is.null(subject.effect.data)) {
+        cat("\n\n ALERT!\n")
+        cat(" No baseline effect data found.\n")
+        cat(" Check the argument 'subject.effect.data'\n")
+        stop(" End of process!\n\n", call. = FALSE)
+    }
+    numobs <- num.obs
+    pheno.prev <- disease.prev
+    env.data <- environment
+    s.efkt.data <- subject.effect.data
+    e.OR <- env.OR
+    alpha <- log(pheno.prev/(1 - pheno.prev))
+    beta <- log(e.OR)
+    lp <- alpha + beta * env.data + s.efkt.data
+    mu <- exp(lp)/(1 + exp(lp))
+    phenotype <- rbinom(numobs, 1, mu)
+    return(phenotype)
 }
-

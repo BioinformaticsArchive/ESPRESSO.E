@@ -12,25 +12,19 @@
 #' @keywords internal
 #' @author Gaye A.
 #'  
-sim.pheno.qtl.E <- function(num.subjects=10000, pheno.mean=0, pheno.sd=1, environment=NULL, env.efkt=0.25){
-  
-   # IF GENOTYPE DATA ARE NOT SUPPLIED STOP AND ISSUE AN ALERT
-   if(is.null(environment)){
-			  cat("\n\n ALERT!\n")
-			  cat(" No environmental exposure data found.\n")
-			  cat(" Check the argument 'environment'\n")
-			  stop(" End of process!\n\n", call.=FALSE)
-	 }
-
-   # ALPHA IS EQUAL TO THE MEAN OF THE TRAIT, WHICH IS 0
-   alpha <- pheno.mean
-   beta <-	env.efkt
-
-   # GENERATE THE LINEAR PREDICTOR
-   lp <- alpha + (beta*environment)
-
-   # GENERATE THE TRUE PHENOTYPE DATA TO RETURN
-   phenotype <- rnorm(num.subjects,lp,pheno.sd)
-   return(phenotype)
+sim.pheno.qtl.E <- function (num.subjects = 10000, pheno.mean = 0, pheno.sd = 1, 
+    environment = NULL, env.efkt = 0.25) 
+{
+    if (is.null(environment)) {
+        cat("\n\n ALERT!\n")
+        cat(" No environmental exposure data found.\n")
+        cat(" Check the argument 'environment'\n")
+        stop(" End of process!\n\n", call. = FALSE)
+    }
+    alpha <- pheno.mean
+    beta <- env.efkt
+    lp <- alpha + (beta * environment)
+    phenotype <- rnorm(num.subjects, lp, pheno.sd)
+    return(phenotype)
 }
 

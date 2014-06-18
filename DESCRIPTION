@@ -12,7 +12,5 @@ Description: The package allows for the Estimation of Sample-size and Power by
     simulation-based power calculation for stand-alone case-control studies and
     for case-control analyses nested in cohort studies, that take account of
     realistic assessment error.
-Depends:
-    MASS
 License: GPL-2
 LazyLoad: yes
