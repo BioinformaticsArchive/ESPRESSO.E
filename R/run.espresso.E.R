@@ -60,10 +60,10 @@ run.espresso.E <- function (simulation.params = NULL, pheno.params = NULL, env.p
     max.pop.size <- 2e+07
     numobs <- 20000
     output.file <- "output.csv"
-    output.matrix <- matrix(numeric(0), ncol = 36)
+    output.matrix <- matrix(numeric(0), ncol = 37)
     column.names <- c(colnames(s.parameters), "exceeded.sample.size?", 
         "numcases.required", "numcontrols.required", "numsubjects.required", 
-        "empirical.power", "modelled.power", "estimated.OR")
+        "empirical.power", "modelled.power", "estimated.OR", "estimated.effect")
     write(t(column.names), output.file, dim(output.matrix)[2], 
         append = TRUE, sep = ";")
     for (j in c(scenarios2run)) {
@@ -165,7 +165,7 @@ run.espresso.E <- function (simulation.params = NULL, pheno.params = NULL, env.p
                 inputs <- inparams
                 outputs <- c(excess, critical.res[[2]], critical.res[[3]], 
                   "NA", critical.res[[4]], critical.res[[5]], 
-                  critical.res[[6]])
+                  critical.res[[6]], critical.res[[7]])
             }
             else {
                 if (e.mod == 1) {
@@ -173,14 +173,14 @@ run.espresso.E <- function (simulation.params = NULL, pheno.params = NULL, env.p
                   inputs <- inparams
                   outputs <- c(excess, critical.res[[2]], critical.res[[3]], 
                     "NA", critical.res[[4]], critical.res[[5]], 
-                    critical.res[[6]])
+                    critical.res[[6]], critical.res[[7]])
                 }
                 else {
                   inparams[c(6, 16, 20, 23, 24, 25, 26)] <- "NA"
                   inputs <- inparams
                   outputs <- c(excess, critical.res[[2]], critical.res[[3]], 
                     "NA", critical.res[[4]], critical.res[[5]], 
-                    critical.res[[6]])
+                    critical.res[[6]], critical.res[[7]])
                 }
             }
         }
@@ -191,7 +191,7 @@ run.espresso.E <- function (simulation.params = NULL, pheno.params = NULL, env.p
                   24, 27)] <- "NA"
                 inputs <- inparams
                 outputs <- c("NA", "NA", "NA", critical.res[[2]], 
-                  critical.res[[3]], critical.res[[4]], critical.res[[5]])
+                  critical.res[[3]], critical.res[[4]], critical.res[[5]], critical.res[[6]])
             }
             else {
                 if (e.mod == 1) {
@@ -200,14 +200,14 @@ run.espresso.E <- function (simulation.params = NULL, pheno.params = NULL, env.p
                     26)] <- "NA"
                   inputs <- inparams
                   outputs <- c("NA", "NA", "NA", critical.res[[2]], 
-                    critical.res[[3]], critical.res[[4]], critical.res[[5]])
+                    critical.res[[3]], critical.res[[4]], critical.res[[5]], critical.res[[6]])
                 }
                 else {
                   inparams[c(4, 5, 11, 14, 15, 19, 21, 22, 25, 
                     26)] <- "NA"
                   inputs <- inparams
                   outputs <- c("NA", "NA", "NA", critical.res[[2]], 
-                    critical.res[[3]], critical.res[[4]], critical.res[[5]])
+                    critical.res[[3]], critical.res[[4]], critical.res[[5]], critical.res[[6]])
                 }
             }
         }

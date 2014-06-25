@@ -51,6 +51,7 @@ get.critical.results.E <- function (scenario = 1, pheno.model = 0, env.model = 0
     }
     if (pheno.model == 0) {
         estimated.OR <- exp(mean.beta)
+        estimated.effect <- "NA"
         cat("\n---- SUMMARY OF SCENARIO", scenario, "----\n")
         cat("\nModels\n")
         cat("------\n")
@@ -73,14 +74,14 @@ get.critical.results.E <- function (scenario = 1, pheno.model = 0, env.model = 0
         cat(" ", round(estimated.OR, 2))
         cat("\n\n---- END OF SUMMARY ----\n")
         crit.res <- c(e.model, numcases, numcontrols, round(empirical.power, 
-            2), round(modelled.power, 2), round(estimated.OR, 
-            2))
+            2), round(modelled.power, 2), round(estimated.OR, 2), estimated.effect)
         return(list(environment.model = crit.res[1], number.of.cases.required = crit.res[2], 
             number.of.controls.required = crit.res[3], empirical.power = crit.res[4], 
-            modelled.power = crit.res[5], estimated.OR = crit.res[6]))
+            modelled.power = crit.res[5], estimated.OR = crit.res[6], estimated.effect = crit.res[7]))
     }
     else {
         estimated.OR <- "NA"
+        estimated.effect <- mean.beta
         cat("\n---- SUMMARY OF SCENARIO", scenario, "----\n")
         cat("\nModels\n")
         cat("------\n")
@@ -100,10 +101,10 @@ get.critical.results.E <- function (scenario = 1, pheno.model = 0, env.model = 0
         cat(" ", estimated.OR)
         cat("\n\n---- END OF SUMMARY ----\n")
         crit.res <- c(e.model, numsubjects, round(empirical.power, 
-            2), round(modelled.power, 2), estimated.OR)
+            2), round(modelled.power, 2), estimated.OR, round(estimated.effect,2))
         return(list(environment.model = crit.res[1], number.of.subjects.required = crit.res[2], 
             empirical.power = crit.res[3], modelled.power = crit.res[4], 
-            estimated.OR = crit.res[5]))
+            estimated.OR = crit.res[5], estimated.effect = crit.res[6]))
     }
 }
 
